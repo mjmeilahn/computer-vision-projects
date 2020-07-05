@@ -1,8 +1,10 @@
 import cv2
 
+# LOAD UNIVERSAL PATTERNS
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
 
+# DETECT FACIAL PATTERN
 def detect (gray, frame):
     faces = face_cascade.detectMultiScale(gray, 1.3, 5)
 
@@ -18,6 +20,7 @@ def detect (gray, frame):
 
 video_capture = cv2.VideoCapture(0) # TURN THE WEBCAM ON
 
+# INFINITE LOOP UNTIL QUIT
 while True:
     _, frame = video_capture.read()
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
@@ -27,8 +30,11 @@ while True:
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
-video_capture.release() # TURN THE WEBCAM OFF
-cv2.destroyAllWindows() # WE DESTROY ALL WINDOWS INSIDE WHICH THE IMAGES WERE DISPLAYED
+# TURN THE WEBCAM OFF
+video_capture.release()
+
+# WE DESTROY ALL WINDOWS INSIDE WHICH THE IMAGES WERE DISPLAYED
+cv2.destroyAllWindows()
 
 
 
